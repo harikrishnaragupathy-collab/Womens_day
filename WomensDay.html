@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Women's Day Swathi</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Poppins',sans-serif;
+overflow:hidden;
+background:linear-gradient(-45deg,#ff4e50,#ff6a88,#ff99ac,#ffdde1);
+background-size:400% 400%;
+animation:bgMove 10s infinite alternate;
+text-align:center;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+100%{background-position:100% 50%}
+}
+
+.container{
+z-index:10;
+}
+
+button{
+padding:18px 45px;
+font-size:22px;
+border:none;
+border-radius:30px;
+background:#ff2e63;
+color:white;
+cursor:pointer;
+box-shadow:0 0 15px pink;
+transition:.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* Floating hearts */
+
+.heart{
+position:absolute;
+bottom:-20px;
+font-size:30px;
+animation:rise 6s linear infinite;
+color:#ff2e63;
+}
+
+@keyframes rise{
+0%{transform:translateY(0)}
+100%{transform:translateY(-100vh)}
+}
+
+/* Big heart animation */
+
+.bigHeart{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+font-size:200px;
+opacity:0;
+z-index:20;
+}
+
+.openHeart{
+animation:heartOpen 2s forwards;
+}
+
+@keyframes heartOpen{
+0%{
+transform:translate(-50%, -50%) scale(0);
+opacity:1;
+}
+50%{
+transform:translate(-50%, -50%) scale(1.2);
+}
+100%{
+transform:translate(-50%, -50%) scale(1);
+}
+}
+
+/* Message */
+
+.finalMessage{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+text-align:center;
+font-size:50px;
+color:white;
+opacity:0;
+animation:showText 3s forwards;
+animation-delay:2s;
+text-shadow:0 0 20px pink;
+z-index:30;
+padding:20px;
+}
+
+@keyframes showText{
+from{
+opacity:0;
+transform:translate(-50%, -30%);
+}
+to{
+opacity:1;
+transform:translate(-50%, -50%);
+}
+}
+
+/* Mobile responsive */
+
+@media (max-width:768px){
+
+button{
+font-size:18px;
+padding:14px 30px;
+}
+
+.bigHeart{
+font-size:120px;
+}
+
+.finalMessage{
+font-size:28px;
+}
+
+}
+
+@media (max-width:480px){
+
+.bigHeart{
+font-size:100px;
+}
+
+.finalMessage{
+font-size:22px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="btnContainer">
+
+<button onclick="openHeart()">Click My Heart ❤️</button>
+
+</div>
+
+<div id="heartContainer"></div>
+
+<script>
+
+/* Floating hearts */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000)
+
+}
+
+setInterval(createHeart,300);
+
+
+/* Heart click function */
+
+function openHeart(){
+
+/* Hide button */
+document.getElementById("btnContainer").style.display="none";
+
+const container=document.getElementById("heartContainer");
+
+container.innerHTML="";
+
+/* Big heart */
+
+const heart=document.createElement("div");
+heart.className="bigHeart openHeart";
+heart.innerHTML="❤️";
+
+container.appendChild(heart);
+
+/* Message */
+
+const msg=document.createElement("div");
+msg.className="finalMessage";
+
+msg.innerHTML=`
+Happy Women's Day<br>
+Swathi 💖<br>
+My Ammu<br>
+I Love U Always ❤️
+`;
+
+container.appendChild(msg);
+
+}
+
+</script>
+
+</body>
+</html>
